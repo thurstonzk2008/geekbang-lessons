@@ -2,6 +2,11 @@ package org.geektimes.projects.user.sql;
 
 import org.geektimes.projects.user.domain.User;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
+import javax.sql.DataSource;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -34,6 +39,14 @@ public class DBConnectionManager {
             throwables.printStackTrace();
         }
         return this.connection;
+
+
+    }
+
+    public Connection getConnectionByJNDI() throws NamingException, SQLException {
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/UserPlatformDB");
+        return ds.getConnection();
     }
 
 

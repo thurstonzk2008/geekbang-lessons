@@ -4,6 +4,7 @@ import org.geektimes.function.ThrowableFunction;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
+import javax.naming.NamingException;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -45,6 +46,14 @@ public class DatabaseUserRepository implements UserRepository {
 
     private Connection getConnection() {
         return dbConnectionManager.getConnection();
+//        try {
+//            return dbConnectionManager.getConnectionByJNDI();
+//        } catch (NamingException e) {
+//            e.printStackTrace();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return null;
     }
 
     @Override
