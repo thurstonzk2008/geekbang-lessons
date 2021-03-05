@@ -30,10 +30,19 @@ public class DBConnectionManager {
 
     public Connection getConnection() {
 
+//        try {
+//            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+//            connection = DriverManager.getConnection(databaseURL);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return this.connection;
+
         try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            connection = DriverManager.getConnection(databaseURL);
-        } catch (ClassNotFoundException e) {
+             connection = getConnectionByJNDI();
+        } catch (NamingException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
