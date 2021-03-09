@@ -20,7 +20,6 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-    @NotNull
     private Long id;
 
     @Column
