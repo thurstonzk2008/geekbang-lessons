@@ -5,7 +5,9 @@ import org.geektimes.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
+import javax.annotation.Resource;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -19,6 +21,9 @@ import java.util.logging.Logger;
 import static org.apache.commons.lang.ClassUtils.wrapperToPrimitive;
 
 public class DatabaseUserRepository implements UserRepository {
+
+//    @Resource(name = "bean/EntityManager")
+    private EntityManager entityManager;
 
     private static Logger logger = Logger.getLogger(DatabaseUserRepository.class.getName());
 
@@ -62,18 +67,20 @@ public class DatabaseUserRepository implements UserRepository {
     @Override
     public boolean save(User user) {
 
-        try (Connection conn = getConnection()) {
-            try (PreparedStatement ps = conn.prepareStatement(
-                    INSERT_USER_DML_SQL)) {
-                ps.setObject(1, user.getName()); // 注意：索引从1开始
-                ps.setObject(2, user.getPassword()); // grade
-                ps.setObject(3, user.getEmail()); // name
-                ps.setObject(4, user.getPhoneNumber()); // gender
-                int n = ps.executeUpdate(); // 1
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+//        try (Connection conn = getConnection()) {
+//            try (PreparedStatement ps = conn.prepareStatement(
+//                    INSERT_USER_DML_SQL)) {
+//                ps.setObject(1, user.getName()); // 注意：索引从1开始
+//                ps.setObject(2, user.getPassword()); // grade
+//                ps.setObject(3, user.getEmail()); // name
+//                ps.setObject(4, user.getPhoneNumber()); // gender
+//                int n = ps.executeUpdate(); // 1
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+        entityManager.persist(user);
+
         return true;
     }
 

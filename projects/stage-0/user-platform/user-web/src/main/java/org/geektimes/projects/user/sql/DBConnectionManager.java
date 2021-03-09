@@ -27,7 +27,7 @@ public class DBConnectionManager { // JNDI Component
     @Resource(name = "jdbc/UserPlatformDB")
     private DataSource dataSource;
 
-    @Resource(name = "bean/EntityManager")
+//    @Resource(name = "bean/EntityManager")
     private EntityManager entityManager;
 
 //    public Connection getConnection() {
