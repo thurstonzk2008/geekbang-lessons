@@ -49,3 +49,4 @@ compiler/.gradle/*
 *.lck
 *.ctrl
 *.dat
+projects/stage-0/user-platform/db/user-platform/service.properties
