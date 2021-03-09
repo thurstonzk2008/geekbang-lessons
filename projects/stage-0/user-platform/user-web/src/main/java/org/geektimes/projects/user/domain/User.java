@@ -27,8 +27,6 @@ public class User implements Serializable {
     private String name;
 
     @Column
-    @Max(32)
-    @Min(6)
     private String password;
 
     @Column
@@ -36,6 +34,17 @@ public class User implements Serializable {
 
     @Column
     private String phoneNumber;
+
+    public User(){
+
+    }
+
+    public User(String name, String password, String email, String phoneNumber) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 
     public Long getId() {
         return id;

@@ -1,6 +1,7 @@
 package org.geektimes.projects.user.service;
 
 import org.geektimes.projects.user.domain.User;
+import org.geektimes.projects.user.repository.UserRepository;
 import org.geektimes.projects.user.sql.LocalTransactional;
 
 import javax.annotation.Resource;
@@ -14,6 +15,8 @@ public class UserServiceImpl implements UserService {
 
     @Resource(name = "bean/Validator")
     private Validator validator;
+
+    private UserRepository userRepository;
 
     @Override
     // 默认需要事务
@@ -64,16 +67,16 @@ public class UserServiceImpl implements UserService {
     @Override
     @LocalTransactional
     public boolean update(User user) {
-        return false;
+        return userRepository.update(user);
     }
 
     @Override
     public User queryUserById(Long id) {
-        return null;
+        return userRepository.getById(1L);
     }
 
     @Override
     public User queryUserByNameAndPassword(String name, String password) {
-        return null;
+        return userRepository.getByNameAndPassword("name","password");
     }
 }

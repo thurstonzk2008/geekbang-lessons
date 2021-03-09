@@ -5,6 +5,7 @@ import org.geektimes.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
+import javax.naming.NamingException;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -32,19 +33,48 @@ public class DatabaseUserRepository implements UserRepository {
 
     public static final String QUERY_ALL_USERS_DML_SQL = "SELECT id,name,password,email,phoneNumber FROM users";
 
-    private final DBConnectionManager dbConnectionManager;
+    private  DBConnectionManager dbConnectionManager;
+    private PreparedStatement preparedStatement;
+//    public DatabaseUserRepository(){
+//        dbConnectionManager = new DBConnectionManager();
 
     public DatabaseUserRepository() {
         this.dbConnectionManager = ComponentContext.getInstance().getComponent("bean/DBConnectionManager");
     }
 
+
+//    public DatabaseUserRepository(DBConnectionManager dbConnectionManager) {
+//        this.dbConnectionManager = dbConnectionManager;
+//    }
+
     private Connection getConnection() {
         return dbConnectionManager.getConnection();
+//        try {
+//            return dbConnectionManager.getConnectionByJNDI();
+//        } catch (NamingException e) {
+//            e.printStackTrace();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return null;
     }
 
     @Override
     public boolean save(User user) {
-        return false;
+
+        try (Connection conn = getConnection()) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    INSERT_USER_DML_SQL)) {
+                ps.setObject(1, user.getName()); // 注意：索引从1开始
+                ps.setObject(2, user.getPassword()); // grade
+                ps.setObject(3, user.getEmail()); // name
+                ps.setObject(4, user.getPhoneNumber()); // gender
+                int n = ps.executeUpdate(); // 1
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
     }
 
     @Override
@@ -156,6 +186,8 @@ public class DatabaseUserRepository implements UserRepository {
 
         preparedStatementMethodMappings.put(Long.class, "setLong"); // long
         preparedStatementMethodMappings.put(String.class, "setString"); //
+
+
 
 
     }
