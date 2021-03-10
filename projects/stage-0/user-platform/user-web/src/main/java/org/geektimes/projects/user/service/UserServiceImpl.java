@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public  boolean register(User user) {
-        userRepository.save(user);
-//        entityManager.persist(user);
+//        userRepository.save(user);
+        entityManager.persist(user);
         return true;
     }
     // 默认需要事务
