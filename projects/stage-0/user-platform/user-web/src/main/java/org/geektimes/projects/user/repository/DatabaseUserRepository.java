@@ -22,7 +22,7 @@ import static org.apache.commons.lang.ClassUtils.wrapperToPrimitive;
 
 public class DatabaseUserRepository implements UserRepository {
 
-//    @Resource(name = "bean/EntityManager")
+    @Resource(name = "bean/EntityManager")
     private EntityManager entityManager;
 
     private static Logger logger = Logger.getLogger(DatabaseUserRepository.class.getName());

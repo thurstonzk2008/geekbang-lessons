@@ -30,6 +30,7 @@ public class DoRegisterController implements PageController {
         String userName = request.getParameter("inputName") ;
         String userPhoneNumber = request.getParameter("inputPhoneNumber") ;
         //依赖查找,目前未实现注入
+        //修改方式1.Controller spi加载的时候主动调用一个预留的钩子方法 2.修改为control修改为jndi注入
         ComponentContext componentContext = ComponentContext.getInstance();
         userService = componentContext.getComponent("bean/UserService");
         userService.register(new User(userName,userPassword,userEmail,userPhoneNumber));
