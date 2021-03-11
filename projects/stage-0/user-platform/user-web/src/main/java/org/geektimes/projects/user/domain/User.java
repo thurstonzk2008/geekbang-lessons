@@ -5,10 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -30,7 +27,7 @@ public class User implements Serializable {
     @Column
     private String name;
 
-    @Range(max = 132, min =6, message = "密码长度在6-32位。")
+    @Size(max = 132, min =6, message = "密码长度在6-32位。")
     @Column
     private String password;
 

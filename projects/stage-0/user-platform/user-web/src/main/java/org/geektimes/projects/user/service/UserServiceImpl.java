@@ -7,15 +7,20 @@ import org.geektimes.projects.user.sql.LocalTransactional;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserServiceImpl implements UserService {
+    Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
 
     @Resource(name = "bean/EntityManager")
     private EntityManager entityManager;
 
-//    @Resource(name = "bean/Validator")
-//    private Validator validator;
+    @Resource(name = "bean/Validator")
+    private Validator validator;
 
     @Resource(name = "bean/UserRepository")
     private UserRepository userRepository;
@@ -25,9 +30,17 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public  boolean register(User user) {
+    public boolean register(User user) {
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        if (violations.size() != 0) {
+            violations.forEach(c -> {
+                logger.log(Level.SEVERE,c.getMessage());
+            });
+            throw new RuntimeException("Validate error");
+        }
+
         userRepository.save(user);
-//        entityManager.persist(user);
         return true;
     }
     // 默认需要事务
@@ -88,6 +101,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User queryUserByNameAndPassword(String name, String password) {
-        return userRepository.getByNameAndPassword("name","password");
+        return userRepository.getByNameAndPassword("name", "password");
     }
 }
