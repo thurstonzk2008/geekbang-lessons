@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean register(User user) {
+        //校验的位置在controler层比较合适，由于controler的注入暂时没有实现，先放在service层
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
         if (violations.size() != 0) {
