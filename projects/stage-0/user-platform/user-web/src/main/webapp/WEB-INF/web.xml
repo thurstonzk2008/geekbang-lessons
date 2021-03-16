@@ -16,6 +16,10 @@
         <listener-class>org.geektimes.projects.user.web.listener.ComponentContextInitializerListener</listener-class>
     </listener>
 
+    <listener>
+        <listener-class>org.geektimes.projects.user.web.listener.MbeanListener</listener-class>
+    </listener>
+
     <!--
     <listener>
         <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>
@@ -50,6 +54,10 @@
     <servlet>
         <servlet-name>jolokia-agent</servlet-name>
         <servlet-class>org.jolokia.http.AgentServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
