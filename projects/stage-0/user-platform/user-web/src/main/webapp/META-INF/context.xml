@@ -48,4 +48,8 @@
 	<!-- Tomcat JNDI 配置 -->
 	<Environment name="maxValue" value="12"
 				 type="java.lang.Integer" override="false"/>
+
+	<!-- 配置文件 -->
+	<Environment name="configFile" value="/META-INF/application.properties"
+				 type="java.lang.String" override="false"/>
 </Context>
