@@ -1,5 +1,6 @@
 package org.geektimes.projects.user.web.listener;
 
+import org.geektimes.configuration.microprofile.config.JavaConfig;
 import org.geektimes.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
@@ -22,14 +23,20 @@ public class TestingListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ComponentContext context = ComponentContext.getInstance();
-        DBConnectionManager dbConnectionManager = context.getComponent("bean/DBConnectionManager");
-        dbConnectionManager.getConnection();
+//        DBConnectionManager dbConnectionManager = context.getComponent("bean/DBConnectionManager");
+//        dbConnectionManager.getConnection();
         testPropertyFromServletContext(sce.getServletContext());
-        testPropertyFromJNDI(context);
-        testUser(dbConnectionManager.getEntityManager());
+//        testPropertyFromJNDI(context);
+//        testUser(dbConnectionManager.getEntityManager());
+        testConfigur();
         logger.info("所有的 JNDI 组件名称：[");
         context.getComponentNames().forEach(logger::info);
         logger.info("]");
+    }
+
+    private void testConfigur() {
+        String applicationName = new JavaConfig().getValue("application.name",String.class);
+        logger.info("applicationName=====>" + applicationName );
     }
 
     private void testPropertyFromServletContext(ServletContext servletContext) {

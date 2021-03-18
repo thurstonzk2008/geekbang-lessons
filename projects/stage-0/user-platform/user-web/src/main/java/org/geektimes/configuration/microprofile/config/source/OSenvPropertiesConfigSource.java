@@ -11,6 +11,9 @@ public class OSenvPropertiesConfigSource implements ConfigSource {
     /*
     * 获取操作系统环境变量数据
      */
+    String CONFIG_ORDINAL = "config_ordinal";
+    int DEFAULT_ORDINAL = 200;
+
     private final Map<String, String> properties;
 
     public OSenvPropertiesConfigSource() {
@@ -30,5 +33,18 @@ public class OSenvPropertiesConfigSource implements ConfigSource {
     @Override
     public String getName() {
         return "OS Env Properties";
+    }
+
+     @Override
+     public int getOrdinal() {
+        String configOrdinal = getValue(CONFIG_ORDINAL);
+        if (configOrdinal != null) {
+            try {
+                return Integer.parseInt(configOrdinal);
+            } catch (NumberFormatException ignored) {
+
+            }
+        }
+        return DEFAULT_ORDINAL;
     }
 }

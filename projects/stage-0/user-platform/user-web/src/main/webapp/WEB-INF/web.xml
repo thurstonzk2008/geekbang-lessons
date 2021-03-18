@@ -20,10 +20,10 @@
         <listener-class>org.geektimes.projects.user.web.listener.MbeanListener</listener-class>
     </listener>
 
-    <!--
+    <!-- -->
     <listener>
         <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>
-    </listener>  -->
+    </listener>
 
     <servlet>
         <servlet-name>default</servlet-name>

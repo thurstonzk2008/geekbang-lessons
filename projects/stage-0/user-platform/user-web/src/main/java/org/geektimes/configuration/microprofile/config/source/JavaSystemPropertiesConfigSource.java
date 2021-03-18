@@ -13,10 +13,13 @@ public class JavaSystemPropertiesConfigSource implements ConfigSource {
      * -Dapplication.name=user-web
      */
     private final Map<String, String> properties;
+    String CONFIG_ORDINAL = "config_ordinal";
+    int DEFAULT_ORDINAL = 300;
 
     public JavaSystemPropertiesConfigSource() {
         Map systemProperties = System.getProperties();
         this.properties = new HashMap<>(systemProperties);
+
     }
 
     @Override
@@ -27,6 +30,19 @@ public class JavaSystemPropertiesConfigSource implements ConfigSource {
     @Override
     public String getValue(String propertyName) {
         return properties.get(propertyName);
+    }
+
+    @Override
+    public int getOrdinal() {
+        String configOrdinal = getValue(CONFIG_ORDINAL);
+        if (configOrdinal != null) {
+            try {
+                return Integer.parseInt(configOrdinal);
+            } catch (NumberFormatException ignored) {
+
+            }
+        }
+        return DEFAULT_ORDINAL;
     }
 
     @Override
