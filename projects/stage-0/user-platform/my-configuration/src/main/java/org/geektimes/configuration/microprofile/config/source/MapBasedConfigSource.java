@@ -18,6 +18,7 @@ public abstract class MapBasedConfigSource implements ConfigSource {
 
     private final Map<String, String> source;
 
+
     protected MapBasedConfigSource(String name, int ordinal) {
         this.name = name;
         this.ordinal = ordinal;
@@ -29,6 +30,7 @@ public abstract class MapBasedConfigSource implements ConfigSource {
      *
      * @return 不可变 Map 类型的配置数据
      */
+    @Override
     public final Map<String, String> getProperties() {
         Map<String,String> configData = new HashMap<>();
         try {

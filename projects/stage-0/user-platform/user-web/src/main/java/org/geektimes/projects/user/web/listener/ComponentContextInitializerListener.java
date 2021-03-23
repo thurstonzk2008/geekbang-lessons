@@ -1,6 +1,6 @@
 package org.geektimes.projects.user.web.listener;
 
-import org.geektimes.context.ComponentContext;
+//import org.geektimes.context.ComponentContext;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -16,9 +16,9 @@ public class ComponentContextInitializerListener implements ServletContextListen
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        this.servletContext = sce.getServletContext();
-        ComponentContext context = new ComponentContext();
-        context.init(servletContext);
+//        this.servletContext = sce.getServletContext();
+//        ComponentContext context = new ComponentContext();
+//        context.init(servletContext);
     }
 
     @Override
