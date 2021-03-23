@@ -2,6 +2,7 @@ package org.geektimes.configuration.microprofile.config.source;
 
 import org.eclipse.microprofile.config.spi.ConfigSource;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -69,8 +70,8 @@ public class ConfigSources implements Iterable<ConfigSource> {
     private ConfigSource newInstance(Class<? extends ConfigSource> configSourceClass) {
         ConfigSource instance = null;
         try {
-            instance = configSourceClass.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
+            instance = configSourceClass.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw new IllegalStateException(e);
         }
         return instance;

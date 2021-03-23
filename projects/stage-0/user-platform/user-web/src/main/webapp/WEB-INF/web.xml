@@ -19,6 +19,10 @@
     <listener>
         <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>
     </listener>
+    
+<!--    <listener>-->
+<!--        <listener-class>org.geektimes.configuration.microprofile.config.source.servlet.ServletContextConfigInitializer</listener-class>-->
+<!--    </listener>-->
 
     <servlet>
         <servlet-name>default</servlet-name>

@@ -15,6 +15,8 @@ import java.util.Set;
 public class ComponentContextInitializer implements ServletContainerInitializer {
     @Override
     public void onStartup(Set<Class<?>> set, ServletContext servletContext) throws ServletException {
-       servletContext.addListener(ComponentContextListener.class);
+        ComponentContext context = new ComponentContext();
+        context.init(servletContext);
+//       servletContext.addListener(ComponentContextListener.class);
     }
 }
