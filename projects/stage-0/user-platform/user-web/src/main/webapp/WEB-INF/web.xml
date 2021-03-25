@@ -23,6 +23,9 @@
 <!--    <listener>-->
 <!--        <listener-class>org.geektimes.configuration.microprofile.config.source.servlet.ServletContextConfigInitializer</listener-class>-->
 <!--    </listener>-->
+    <listener>
+        <listener-class>org.geektimes.dependency.injection.context.ComponentContextListener</listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>default</servlet-name>

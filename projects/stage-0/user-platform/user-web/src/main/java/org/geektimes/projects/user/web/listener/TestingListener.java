@@ -1,6 +1,7 @@
 package org.geektimes.projects.user.web.listener;
 
 //import org.geektimes.context.ComponentContext;
+import org.geektimes.dependency.injection.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
@@ -10,7 +11,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.util.logging.Logger;
-
 /**
  * 测试用途
  */
@@ -21,7 +21,8 @@ public class TestingListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-//        ComponentContext context = ComponentContext.getInstance();
+//        ComponentContext context = org.geektimes.dependency.injection.context.ComponentContext.getInstance();
+        ComponentContext context = ComponentContext.getInstance();
 //        DBConnectionManager dbConnectionManager = context.getComponent("bean/DBConnectionManager");
 //        dbConnectionManager.getConnection();
 //        testPropertyFromServletContext(sce.getServletContext());
