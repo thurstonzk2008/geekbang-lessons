@@ -29,9 +29,9 @@
         <commons-lang.version>2.6</commons-lang.version>
         <commons-validator.version>1.7</commons-validator.version>
         <commons-configuration.version>1.10</commons-configuration.version>
-        <derby.version>10.1.3.1</derby.version>
+        <derby.version>10.14.1.0</derby.version>
         <hibernate.version>5.4.29.Final</hibernate.version>
-        <hibernate.validator.version>6.1.7.Final</hibernate.validator.version>
+        <hibernate.validator.version>5.1.0.Final</hibernate.validator.version>
 
         <!-- MicroProfile 版本-->
         <microprofile-config-api.version>2.0</microprofile-config-api.version>
@@ -113,9 +113,16 @@
                 <version>${hibernate.version}</version>
             </dependency>
 
-            <!-- Hibernate Validator -->
+            <!-- Hibernate Validator
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>-->
+
+            <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.validator.version}</version>
             </dependency>

@@ -1,12 +1,16 @@
 package org.geektimes.projects.user.web.listener;
 
 //import org.geektimes.context.ComponentContext;
+import org.eclipse.microprofile.config.Config;
+import org.geektimes.configuration.microprofile.config.source.servlet.listener.ConfigServletRequestListener;
 import org.geektimes.dependency.injection.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
 import javax.persistence.EntityManager;
+//import javax.persistence.EntityTransaction;
 import javax.persistence.EntityTransaction;
+//import javax.servlet.ServletContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -23,6 +27,8 @@ public class TestingListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
 //        ComponentContext context = org.geektimes.dependency.injection.context.ComponentContext.getInstance();
         ComponentContext context = ComponentContext.getInstance();
+        logger.info("获取 ComponentContext" + context.toString());
+//        Config config = ConfigServletRequestListener.getConfig();
 //        DBConnectionManager dbConnectionManager = context.getComponent("bean/DBConnectionManager");
 //        dbConnectionManager.getConnection();
 //        testPropertyFromServletContext(sce.getServletContext());
