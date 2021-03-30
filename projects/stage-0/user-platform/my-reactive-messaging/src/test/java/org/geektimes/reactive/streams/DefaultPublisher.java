@@ -35,6 +35,11 @@ public class DefaultPublisher<T> implements Publisher<T> {
 
             // 继续发送
             subscriber.onNext(data);
+            // 判断当前 subscriber 是否 cancel 数据发送
+            if (subscription.isCanceled()) {
+                System.err.println("本次数据发布已忽略，数据为：" + data);
+                return;
+            }
         });
     }
 
@@ -57,7 +62,7 @@ public class DefaultPublisher<T> implements Publisher<T> {
 
         publisher.subscribe(new DefaultSubscriber());
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             publisher.publish(i);
         }
     }
