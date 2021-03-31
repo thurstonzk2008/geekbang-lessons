@@ -10,6 +10,7 @@ public class ServletConfigInitializer implements ServletContainerInitializer {
     @Override
     public void onStartup(Set<Class<?>> c, ServletContext servletContext) throws ServletException {
         // 增加 ServletContextListener
-        servletContext.addListener(ServletContextConfigInitializer.class);
+//        servletContext.addListener(ServletContextConfigInitializer.class);
+
     }
 }

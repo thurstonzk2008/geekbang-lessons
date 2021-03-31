@@ -16,19 +16,25 @@
  */
 package org.geektimes.rest.client;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.geektimes.rest.core.DefaultResponse;
 
 import javax.ws.rs.HttpMethod;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
@@ -47,13 +53,19 @@ class HttpPostInvocation implements Invocation {
 
     private final MultivaluedMap<String, Object> headers;
 
-    HttpPostInvocation(URI uri, MultivaluedMap<String, Object> headers) {
+    private Entity<?> entity = null;
+
+    HttpPostInvocation(URI uri, MultivaluedMap<String, Object> headers,Entity<?> entity) {
         this.uri = uri;
         this.headers = headers;
         try {
             this.url = uri.toURL();
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException();
+        }
+        this.entity = entity;
+        if (entity != null) {
+            this.headers.put("Content-type", Collections.singletonList(entity.getMediaType() + "/" + entity.getMediaType().getSubtype()));
         }
     }
 
@@ -68,7 +80,13 @@ class HttpPostInvocation implements Invocation {
         try {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(HttpMethod.POST);
+            //设置报文头
+//            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+//            connection.setRequestProperty("Accept", "application/json");
+//            connection.setDoOutput(true);
             setRequestHeaders(connection);
+            setRequsetBody(connection);
+
             // TODO Set the cookies
             int statusCode = connection.getResponseCode();
 //            Response.ResponseBuilder responseBuilder = Response.status(statusCode);
@@ -78,19 +96,21 @@ class HttpPostInvocation implements Invocation {
             response.setConnection(connection);
             response.setStatus(statusCode);
             return response;
-//            Response.Status status = Response.Status.fromStatusCode(statusCode);
-//            switch (status) {
-//                case Response.Status.OK:
-//
-//                    break;
-//                default:
-//                    break;
-//            }
-
         } catch (IOException e) {
             // TODO Error handler
         }
         return null;
+    }
+
+    private void setRequsetBody(HttpURLConnection connection) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
+            bufferedWriter.write(new ObjectMapper().writeValueAsString(entity.getEntity()));
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setRequestHeaders(HttpURLConnection connection) {
