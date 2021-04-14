@@ -79,28 +79,27 @@ public class CachingTest {
         CachingProvider cachingProvider = Caching.getCachingProvider();
         CacheManager cacheManager = cachingProvider.getCacheManager(URI.create("redis://127.0.0.1:6379/0"), null);
         // configure the cache
-        MutableConfiguration<String, String> config =
-                new MutableConfiguration<String, String>()
-                        .setTypes(String.class, String.class);
+        MutableConfiguration<String, Integer> config =
+                new MutableConfiguration<String, Integer>()
+                        .setTypes(String.class, Integer.class);
 
         // create the cache
-        Cache<String, String> cache = cacheManager.createCache("redisCache", config);
+        Cache<String, Integer> cache = cacheManager.createCache("redisCache", config);
 
         // add listener
         cache.registerCacheEntryListener(cacheEntryListenerConfiguration(new TestCacheEntryListener<>()));
 
         // cache operations
         String key = "redis-key";
-        String value1 = "1";
+        Integer value1  = 1;
         cache.put(key, value1);
 
         // update
 //        value1 = 2;
-        String valueNew = "2";
-        cache.put(key, valueNew);
+        cache.put(key, value1);
 
-        String value2 = cache.get(key);
-        assertEquals(valueNew, value2);
+        Integer value2 = cache.get(key);
+        assertEquals(value2, value1);
         cache.remove(key);
         assertNull(cache.get(key));
     }
