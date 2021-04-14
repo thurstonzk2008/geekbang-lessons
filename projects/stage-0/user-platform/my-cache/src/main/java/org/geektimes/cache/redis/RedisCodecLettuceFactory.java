@@ -22,7 +22,7 @@ public class RedisCodecLettuceFactory<K, V> {
 
     static {
         redisMap.put(String.class, new StringCodec());
-//        redisMap.put(Integer.class,new IntegerCodec());
+        redisMap.put(Integer.class,new IntegerCodec());
 //        redisMap.put(String.class,new StringCodec());
 //        redisMap.put(String.class,new StringCodec());
 //        redisMap.put(String.class,new StringCodec());

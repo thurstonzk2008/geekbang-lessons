@@ -3,17 +3,14 @@ package org.geektimes.cache.redis;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
-import io.lettuce.core.codec.ByteArrayCodec;
-import io.lettuce.core.codec.RedisCodec;
+
 import org.geektimes.cache.AbstractCache;
 import org.geektimes.cache.ExpirableEntry;
-import redis.clients.jedis.Connection;
-import redis.clients.jedis.Jedis;
+
 
 import javax.cache.CacheException;
 import javax.cache.CacheManager;
 import javax.cache.configuration.Configuration;
-import java.io.*;
 import java.util.Set;
 
 public class LettuceCache<K , V > extends AbstractCache<K, V> {
@@ -42,7 +39,8 @@ public class LettuceCache<K , V > extends AbstractCache<K, V> {
 
     @Override
     protected ExpirableEntry<K, V> getEntry(K key) throws CacheException, ClassCastException {
-        return getEntry(key);
+        V value = syncCommands.get(key);
+        return ExpirableEntry.of(key,value);
     }
 
 //    protected ExpirableEntry<K, V> getEntry(byte[] keyBytes) throws CacheException, ClassCastException {
