@@ -5,5 +5,5 @@
 - org.geektimes.cache.redis.RedisCodecLettuceFactory
 - org.geektimes.cache.redis.IntegerCodec 
 
-2. 序列化反序列化的抽象（只有api，没有实现） 
+2.序列化反序列化的抽象（只有api，没有实现） 
 stage-0/user-platform/my-cache/src/main/java/org/geektimes/cache/serialization
