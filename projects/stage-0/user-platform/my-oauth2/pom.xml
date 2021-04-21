@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
+        <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.geektime</groupId>
-    <artifactId>oauth2</artifactId>
+    <artifactId>my-oauth2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oauth2</name>
+    <name>my-oauth2</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
