@@ -16,9 +16,9 @@
         <listener-class>org.geektimes.projects.user.web.listener.ComponentContextInitializerListener</listener-class>
     </listener>
 
-    <listener>
-        <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>
-    </listener>
+<!--    <listener>-->
+<!--        <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>-->
+<!--    </listener>-->
 
     <servlet>
         <servlet-name>default</servlet-name>
@@ -56,15 +56,15 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <filter>
-        <filter-name>HttpSessionFilter</filter-name>
-        <filter-class>org.geektimes.projects.user.web.filter.HttpSessionFilter</filter-class>
-        <init-param>
-            <!-- Filter ÅäÖÃ = FilterConfig -->
-            <param-name>javax.cache.CacheManager.uri</param-name>
-            <param-value>redis://127.0.0.1:6379/</param-value>
-        </init-param>
-    </filter>
+<!--    <filter>-->
+<!--        <filter-name>HttpSessionFilter</filter-name>-->
+<!--        <filter-class>org.geektimes.projects.user.web.filter.HttpSessionFilter</filter-class>-->
+<!--        <init-param>-->
+<!--            &lt;!&ndash; Filter ÅäÖÃ = FilterConfig &ndash;&gt;-->
+<!--            <param-name>javax.cache.CacheManager.uri</param-name>-->
+<!--            <param-value>redis://127.0.0.1:6379/</param-value>-->
+<!--        </init-param>-->
+<!--    </filter>-->
 
     <filter>
         <filter-name>CharsetEncodingFilter</filter-name>
@@ -145,26 +145,26 @@
     <!--    </resource-env-ref>-->
 
     <!-- Define a Security Constraint on this Application -->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Hello,World</web-resource-name>
-            <url-pattern>/hello/world</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <!-- NOTE:  This role is not present in the default users file -->
-            <role-name>tomcat</role-name>
-        </auth-constraint>
-    </security-constraint>
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>Hello,World</web-resource-name>-->
+<!--            <url-pattern>/hello/world</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            &lt;!&ndash; NOTE:  This role is not present in the default users file &ndash;&gt;-->
+<!--            <role-name>tomcat</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
 
     <!-- Define the Login Configuration for this Application -->
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>Tomcat Host Manager Application</realm-name>
-    </login-config>
+<!--    <login-config>-->
+<!--        <auth-method>BASIC</auth-method>-->
+<!--        <realm-name>Tomcat Host Manager Application</realm-name>-->
+<!--    </login-config>-->
 
     <!-- Security roles referenced by this web application -->
-    <security-role>
-        <role-name>tomcat</role-name>
-    </security-role>
+<!--    <security-role>-->
+<!--        <role-name>tomcat</role-name>-->
+<!--    </security-role>-->
 
 </web-app>

@@ -56,19 +56,23 @@ public class FrontControllerServlet extends HttpServlet {
         for (Controller controller : ServiceLoader.load(Controller.class)) {
             Class<?> controllerClass = controller.getClass();
             Path pathFromClass = controllerClass.getAnnotation(Path.class);
-            String requestPath = pathFromClass.value();
+            String classRequestPath = pathFromClass.value();
+            String requestPath = classRequestPath;
             Method[] publicMethods = controllerClass.getMethods();
             // 处理方法支持的 HTTP 方法集合
             for (Method method : publicMethods) {
-                Set<String> supportedHttpMethods = findSupportedHttpMethods(method);
-                Path pathFromMethod = method.getAnnotation(Path.class);
-                if (pathFromMethod != null) {
-                    requestPath += pathFromMethod.value();
+                if (method.isAnnotationPresent(Path.class)) {
+                    Set<String> supportedHttpMethods = findSupportedHttpMethods(method);
+                    Path pathFromMethod = method.getAnnotation(Path.class);
+                    if (pathFromMethod != null) {
+                        requestPath = classRequestPath + pathFromMethod.value();
+                    }
+                    handleMethodInfoMapping.put(requestPath,
+                            new HandlerMethodInfo(requestPath, method, supportedHttpMethods));
+                    controllersMapping.put(requestPath, controller);
                 }
-                handleMethodInfoMapping.put(requestPath,
-                        new HandlerMethodInfo(requestPath, method, supportedHttpMethods));
+
             }
-            controllersMapping.put(requestPath, controller);
         }
     }
 
@@ -150,6 +154,25 @@ public class FrontControllerServlet extends HttpServlet {
                         return;
                     } else if (controller instanceof RestController) {
                         // TODO
+                    } else {
+                        Method method = handlerMethodInfo.getHandlerMethod();
+                        Object obj = method.invoke(controller, request, response);
+                        String viewPath = (String) obj;
+//                        PageController pageController = PageController.class.cast(controller);
+//                        String viewPath = pageController.execute(request, response);
+                        // 页面请求 forward
+                        // request -> RequestDispatcher forward
+                        // RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewPath);
+                        // ServletContext -> RequestDispatcher forward
+                        // ServletContext -> RequestDispatcher 必须以 "/" 开头
+                        ServletContext servletContext = request.getServletContext();
+                        if (!viewPath.startsWith("/")) {
+                            viewPath = "/" + viewPath;
+                        }
+                        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(viewPath);
+                        requestDispatcher.forward(request, response);
+                        return;
+
                     }
 
                 }
