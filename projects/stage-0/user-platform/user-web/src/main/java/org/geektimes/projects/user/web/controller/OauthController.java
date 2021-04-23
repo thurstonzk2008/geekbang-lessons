@@ -59,16 +59,15 @@ public class OauthController implements Controller {
         String token = resultMap.get("access_token");
 //
 //        // 获取个人信息
-        Map<String, String> headers = new HashMap<>();
-        headers.put("", "" );
-        String userInfo = HttpURLClient.doPostWithToken(GET_USER_INFO_API,URLParamsUtil.mapToStr(headers),token);
+        String userInfo = HttpURLClient.doGetWithToken(GET_USER_INFO_API,token);
+
 
 //        logger.info("user info is: " + userInfo);
 //
 //        JSONObject userObject = JSONObject.parseObject(userInfo);
 //        String name = userObject.getString("name");
 //        String avatar_url = userObject.getString("avatar_url");
-//        request.setAttribute("avatar_url", avatar_url);
+        request.setAttribute("avatar_url", userInfo);
 //        request.setAttribute("name", name)name;
 
         return "login-oauth-success.jsp";
