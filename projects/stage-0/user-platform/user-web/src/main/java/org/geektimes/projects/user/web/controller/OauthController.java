@@ -1,5 +1,7 @@
 package org.geektimes.projects.user.web.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 import org.geektimes.projects.user.web.utils.HttpURLClient;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -19,10 +22,10 @@ import java.util.logging.Logger;
 /**
  * 输出 “Hello,World” Controller
  */
-@Path("/github")
+@Path("/")
 public class OauthController implements Controller {
 
-//    private final ConfigProviderResolver provider = ConfigProviderResolver.instance();
+    //    private final ConfigProviderResolver provider = ConfigProviderResolver.instance();
 //    private final Config providerConfig = provider.getConfig();
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -43,7 +46,7 @@ public class OauthController implements Controller {
     }
 
     @GET
-    @Path("/oauth")
+    @Path("/login/oauth2/code/github")
     public String oauth(HttpServletRequest request, HttpServletResponse response) {
         String code = request.getParameter("code");
 
@@ -55,21 +58,34 @@ public class OauthController implements Controller {
         String result = HttpURLClient.doPost(GET_TOKEN_API, URLParamsUtil.mapToStr(params));
 
 
-        Map<String, String> resultMap =URLParamsUtil.resolveParamsByUrl("?" + result);
+        Map<String, String> resultMap = URLParamsUtil.resolveParamsByUrl("?" + result);
         String token = resultMap.get("access_token");
 //
 //        // 获取个人信息
-        String userInfo = HttpURLClient.doGetWithToken(GET_USER_INFO_API,token);
+        String userInfo = HttpURLClient.doGetWithToken(GET_USER_INFO_API, token);
 
 
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode actualObj = null;
+        try {
+             actualObj = mapper.readTree(userInfo);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        String name  = actualObj.get("name").textValue();
+        String avatar_url = actualObj.get("avatar_url").textValue();
 //        logger.info("user info is: " + userInfo);
 //
 //        JSONObject userObject = JSONObject.parseObject(userInfo);
 //        String name = userObject.getString("name");
 //        String avatar_url = userObject.getString("avatar_url");
-        request.setAttribute("avatar_url", userInfo);
-//        request.setAttribute("name", name)name;
+        request.setAttribute("avatar_url", avatar_url);
+        request.setAttribute("name", name);
 
         return "login-oauth-success.jsp";
     }
+
 }
+
+
