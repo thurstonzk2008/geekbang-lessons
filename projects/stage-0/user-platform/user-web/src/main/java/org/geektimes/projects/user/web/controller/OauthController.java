@@ -26,23 +26,26 @@ import java.util.logging.Logger;
 @Path("/")
 public class OauthController implements Controller {
 
-    //    private final ConfigProviderResolver provider = ConfigProviderResolver.instance();
-//    private final Config providerConfig = provider.getConfig();
-    private final ConfigProviderResolver provider = new DefaultConfigProviderResolver();
-    private final  Config config = provider.getConfig();
+
+
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     private static final String GET_TOKEN_API = "https://github.com/login/oauth/access_token";
     private static final String GET_USER_INFO_API = "https://api.github.com/user";
     private static final String CLIENT_ID_KEY = "client_id";
     private static final String CLIENT_SECRETS_KEY = "client_secrets";
-    private static final String client_id = "18173c22846b013f30db";
-    private static final String client_sercert = "af848d0ad32c189487da738de60645f11bfb1a79";
+//    private static final ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
+//    private static final Config config = configProviderResolver.getConfig();
+//
+//    private static final String client_id = config.getValue(CLIENT_ID_KEY, String.class);
+//    private static final String client_sercert = config.getValue(CLIENT_SECRETS_KEY, String.class);
 
 
     @GET
     @Path("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) {
+         ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
+         Config config = configProviderResolver.getConfig();
         String client_id = config.getValue(CLIENT_ID_KEY, String.class);
         request.setAttribute("client_id", client_id);
         return "login-oauth.jsp";
@@ -55,6 +58,10 @@ public class OauthController implements Controller {
 
         // 获取 token
         Map<String, String> params = new HashMap<>();
+        final ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
+        final Config config = configProviderResolver.getConfig();
+        String client_id = config.getValue(CLIENT_ID_KEY, String.class);
+        String client_sercert = config.getValue(CLIENT_SECRETS_KEY,String.class);
         params.put("client_id", client_id);
         params.put("client_secret", client_sercert);
         params.put("code", code);
