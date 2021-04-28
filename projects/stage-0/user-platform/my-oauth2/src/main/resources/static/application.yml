@@ -7,6 +7,7 @@ spring:
             client-id: 18173c22846b013f30db
             client-secret: af848d0ad32c189487da738de60645f11bfb1a79
 
+
 logging:
   level:
     org.springframework.security: DEBUG

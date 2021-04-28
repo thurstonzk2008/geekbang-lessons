@@ -15,28 +15,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @SpringBootApplication
-@RestController
 public class Oauth2Application extends WebSecurityConfigurerAdapter {
-
-    @GetMapping("/user")
-    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-        return Collections.singletonMap("name", principal.getAttribute("name"));
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
-        http
-                .authorizeRequests(a -> a
-                        .antMatchers("/", "/error", "/webjars/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .exceptionHandling(e -> e
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                )
-                .oauth2Login();
-        // @formatter:on
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(Oauth2Application.class, args);
