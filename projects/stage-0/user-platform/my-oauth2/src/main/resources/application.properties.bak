@@ -1,0 +1,6 @@
+server.port=8081
+spring.security.user.name=user
+spring.security.user.password=123
+spring.security.oauth2.client.registration.github.client-id=18173c22846b013f30db
+spring.security.oauth2.client.registration.github.client-secret=af848d0ad32c189487da738de60645f11bfb1a79
+logging.level.org.springframework.security=debug

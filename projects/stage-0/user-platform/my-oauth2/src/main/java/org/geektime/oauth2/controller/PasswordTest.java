@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class PasswordTest {
+    @GetMapping("/")
+    public String hello() {
+        return "hello, spring security 123";
+    }
+
     @GetMapping("/passwordtest")
     public String passwordTest() {
         return "password Test!";

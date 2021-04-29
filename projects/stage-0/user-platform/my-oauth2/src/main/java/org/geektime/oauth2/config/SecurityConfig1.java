@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.stereotype.Component;
 
 /**
  * TODO
@@ -16,8 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  **/
 
 
-@EnableWebSecurity
-@Order(202)
+//@EnableWebSecurity(debug = true)
+@Component
+@Order(201)
 public class SecurityConfig1 extends WebSecurityConfigurerAdapter {
 
     @Override

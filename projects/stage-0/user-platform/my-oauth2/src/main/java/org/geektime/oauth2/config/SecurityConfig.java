@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.stereotype.Component;
 
 /**
  * TODO
@@ -16,8 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  **/
 
 
-@EnableWebSecurity
-@Order(201)
+@Component
+@Order(198)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -30,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .successHandler(new SecurityAuthenticationSuccessHandler())
                 .failureHandler(new SecurityAuthenticationFailureHandler())
-                // 使登录页不设限访问
+//                 使登录页不设限访问
                 .permitAll()
                 .and()
                 .csrf().disable();
