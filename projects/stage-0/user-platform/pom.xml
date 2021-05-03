@@ -21,6 +21,8 @@
         <module>my-interceptor</module>
         <module>user-data</module>
         <module>my-oauth2</module>
+        <module>my-commons</module>
+        <module>my-session</module>
     </modules>
 
     <properties>
