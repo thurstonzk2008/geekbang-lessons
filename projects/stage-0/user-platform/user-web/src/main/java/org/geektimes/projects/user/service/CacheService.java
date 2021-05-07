@@ -11,4 +11,5 @@ import org.geektimes.projects.user.domain.User;
  **/
 public interface CacheService {
     User getUser();
+    User getUser1();
 }

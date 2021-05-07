@@ -21,7 +21,9 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.support.AbstractCacheManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -37,35 +39,45 @@ import java.util.List;
  * @since 1.0.0
  * Date : 2021-04-29
  */
+@ComponentScan({"org.geektimes.projects.user.cache","org.geektimes.projects.user.service"})
 @EnableCaching
 @Configuration
 public class RedisCacheManager extends AbstractCacheManager {
 
-    private final JedisPool jedisPool;
+//    private JedisPool jedisPool = null;
+    private Jedis jedis = null;
+
+    private final String uri = "redis://127.0.0.1:6379";
+
+    public RedisCacheManager() {
+//        new RedisCacheManager(uri);
+        this.jedis = new Jedis(uri); }
 
     public RedisCacheManager(String uri) {
-        this.jedisPool = new JedisPool(uri);
+        this.jedis = new Jedis(uri);
     }
 
     @Override
     protected Collection<? extends Cache> loadCaches() {
         // 确保接口不返回 null
-        List<? extends Cache> caches = new LinkedList<>();
+        List<Cache> caches = new LinkedList<>();
         prepareCaches(caches);
         return caches;
     }
 
-    @Override
-    protected Cache getMissingCache(String name) {
-        Jedis jedis = jedisPool.getResource();
-        return new RedisCache(name, jedis);
-    }
+//    @Override
+//    protected Cache getMissingCache(String name) {
+//        Jedis jedis = jedisPool.getResource();
+//        return new RedisCache(name, jedis);
+//    }
 
-    private void prepareCaches(List<? extends Cache> caches) {
+    private void prepareCaches(List<Cache> caches) {
+        Cache cache = new RedisCache("redisCache",jedis);
+        caches.add(cache);
     }
-    @Bean(name="redisCacheManager")
-    RedisCacheManager getRedisCacheManager(){
-        String uri = "redis://localhost:6380";
-        return new RedisCacheManager(uri);
+    @Bean("myRedisCacheManager")
+    @Primary
+    public RedisCacheManager redisCacheManager(){
+        return new RedisCacheManager();
     }
 }
