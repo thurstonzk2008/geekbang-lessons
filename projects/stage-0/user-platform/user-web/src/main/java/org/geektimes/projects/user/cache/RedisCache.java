@@ -59,6 +59,9 @@ public class RedisCache implements Cache {
     public ValueWrapper get(Object key) {
         byte[] keyBytes = serialize(key);
         byte[] valueBytes = jedis.get(keyBytes);
+        if (valueBytes == null) {
+            return null;
+        }
         return () -> deserialize(valueBytes);
     }
 

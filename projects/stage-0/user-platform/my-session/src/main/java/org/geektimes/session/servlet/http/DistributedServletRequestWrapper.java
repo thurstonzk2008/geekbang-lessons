@@ -75,7 +75,9 @@ public class DistributedServletRequestWrapper extends HttpServletRequestWrapper 
 
         if (session != null) {
             SessionInfo sessionInfo = getSessionInfoFromCache(requestedSessionId);
-            return new DistributedHttpSession(cacheManager, session, sessionInfo);
+            // TODO CacheManager无法转换为HttpServletRequest
+//            return new DistributedHttpSession(cacheManager, session, sessionInfo);
+            return null;
         } else {
             // invalidate session
             return session;

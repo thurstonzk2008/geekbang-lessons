@@ -53,6 +53,8 @@ public class DistributedHttpSession implements HttpSession {
 
     private final Cache<String, Object> attributesCache;
 
+    private Duration expiryDuration;
+
     public DistributedHttpSession(HttpServletRequest request, HttpSession source, CacheManager cacheManager) {
         this.request = request;
         this.source = source;
@@ -138,7 +140,7 @@ public class DistributedHttpSession implements HttpSession {
             MutableConfiguration<String, SessionInfo> configuration =
                     new MutableConfiguration<String, SessionInfo>()
                             .setTypes(String.class, SessionInfo.class)
-                            .setExpiryPolicyFactory(() -> new TouchedExpiryPolicy(Duration));
+                            .setExpiryPolicyFactory(() -> new TouchedExpiryPolicy(expiryDuration));
             cache = cacheManager.createCache(cacheName, configuration);
         }
         return cache;
@@ -161,7 +163,7 @@ public class DistributedHttpSession implements HttpSession {
             public Duration getExpiryForUpdate() {
                 return null;
             }
-        }
+        };
     }
 
     private Cache<String, Object> getCache() {
