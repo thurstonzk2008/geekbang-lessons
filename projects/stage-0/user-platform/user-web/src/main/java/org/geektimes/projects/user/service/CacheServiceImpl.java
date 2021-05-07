@@ -15,14 +15,15 @@ import org.geektimes.projects.user.cache.RedisCacheManager;
  * @Version 1.0
  **/
 @Service
-@CacheConfig(cacheManager="RedisCacheManager",cacheNames = "String")
+//@CacheConfig(cacheManager="redisCacheManager",cacheNames = "String")
 public class CacheServiceImpl implements CacheService{
     @Override
-    @Cacheable(cacheNames = "user")
+    @Cacheable(cacheNames = "users",cacheManager="redisCacheManager")
     public User getUser() {
         User user = new User();
         user.setId(1L);
         user.setName("testName");
+        System.out.println("get user from real");
         return user;
     }
 }
