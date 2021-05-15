@@ -64,6 +64,9 @@
         <mybatis.version>3.5.7</mybatis.version>
         <mybatis-spring.version>2.0.6</mybatis-spring.version>
 
+        <!--MySQL connect 依赖-->
+        <mysql-connector-java.version>8.0.25</mysql-connector-java.version>
+
         <!-- Spring 依赖版本 -->
         <spring-boot.version>2.4.5</spring-boot.version>
 
@@ -277,6 +280,13 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
             </dependency>
 
             <!-- Apache ActiveMQ -->

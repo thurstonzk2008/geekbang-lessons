@@ -6,6 +6,7 @@ import org.geektimes.projects.user.mybatis.annotation.MyBatisBeanDefinitionRegis
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
 
@@ -47,4 +48,10 @@ public @interface EnableMyBatis {
 
         String environment() default "SqlSessionFactoryBean";
 
-    }
+        @AliasFor(annotation = MapperScan.class)
+        String[] basePackages();
+        String typeHandlersPackage() default "";
+
+        String typeAliasesPackage() default "";
+
+}

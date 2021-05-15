@@ -1,21 +1,7 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.geektimes.projects.user.mybatis.annotation;
 
+import org.apache.commons.lang.StringUtils;
+import org.geektimes.projects.user.mybatis.annotation.EnableMyBatis;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -40,6 +26,7 @@ public class MyBatisBeanDefinitionRegistrar implements ImportBeanDefinitionRegis
 
     private Environment environment;
 
+    @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         BeanDefinitionBuilder beanDefinitionBuilder = genericBeanDefinition(SqlSessionFactoryBean.class);
 
@@ -55,13 +42,17 @@ public class MyBatisBeanDefinitionRegistrar implements ImportBeanDefinitionRegis
         beanDefinitionBuilder.addPropertyValue("configLocation", attributes.get("configLocation"));
         beanDefinitionBuilder.addPropertyValue("mapperLocations", attributes.get("mapperLocations"));
         beanDefinitionBuilder.addPropertyValue("environment", resolvePlaceholder(attributes.get("environment")));
-        // 自行添加其他属性
 
+        beanDefinitionBuilder.addPropertyValue("typeHandlersPackage",
+                attributes.get("typeHandlersPackage"));
+        beanDefinitionBuilder.addPropertyValue("typeAliasesPackage",
+                attributes.get("typeAliasesPackage"));
+
+        // 自行添加其他属性
         // SqlSessionFactoryBean 的 BeanDefinition
         BeanDefinition beanDefinition = beanDefinitionBuilder.getBeanDefinition();
-
         String beanName = (String) attributes.get("value");
-        registry.registerBeanDefinition(beanName, beanDefinition);
+
     }
 
     private Object resolvePlaceholder(Object value) {
