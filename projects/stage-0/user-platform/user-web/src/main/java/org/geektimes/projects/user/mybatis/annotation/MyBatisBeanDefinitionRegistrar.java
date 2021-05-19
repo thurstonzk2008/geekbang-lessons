@@ -53,6 +53,8 @@ public class MyBatisBeanDefinitionRegistrar implements ImportBeanDefinitionRegis
         BeanDefinition beanDefinition = beanDefinitionBuilder.getBeanDefinition();
         String beanName = (String) attributes.get("value");
 
+        registry.registerBeanDefinition(beanName,beanDefinition);
+
     }
 
     private Object resolvePlaceholder(Object value) {

@@ -1,7 +1,9 @@
 package org.geektimes.projects.user.mybatis.configuration;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
@@ -14,6 +16,7 @@ import javax.sql.DataSource;
  * @Version 1.0
  **/
 @Configuration
+@ComponentScan({"org.geektimes.projects.user.mybatis","org.geektimes.projects.user.service"})
 public class MySQLConfiguration {
     @Bean
     public DataSource dataSource() {
@@ -26,4 +29,11 @@ public class MySQLConfiguration {
 
         return dataSource;
     }
+//    @Bean
+//    public MapperScannerConfigurer mapperScannerConfigurer(){
+//        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+//        mapperScannerConfigurer.setBasePackage("org.geektimes.projects.user.mybatis.mapper");
+//        mapperScannerConfigurer.setAddToConfig(true);
+//        return  mapperScannerConfigurer;
+//    }
 }

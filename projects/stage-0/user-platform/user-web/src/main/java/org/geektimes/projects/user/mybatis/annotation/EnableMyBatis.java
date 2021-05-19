@@ -21,6 +21,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Documented
 @Inherited
+@MapperScan
 @Import(MyBatisBeanDefinitionRegistrar.class)
 public @interface EnableMyBatis {
         /**
@@ -31,7 +32,7 @@ public @interface EnableMyBatis {
         /**
          * @return DataSource bean name
          */
-        String dataSource();
+        String dataSource() default "dataSource";
 
         /**
          * the location of {@link Configuration}
