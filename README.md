@@ -1,6 +1,11 @@
 # geekbang-lessons
-## 打通spring cache 和@cacheable
-1. org.geektimes.projects.user.cache.RedisCacheManager 标识@EnableCaching，@Configuration，@Bean标识 RedisCacheManager 
-   todo ：jedis等配置的配置化修改
-2. 新增 org.geektimes.projects.user.service.CacheServiceImpl#getUse 标识@Cachaeable
-3. 新增测试 org.geektimes.projects.user.service.CacheServiceImplTest  如果是直接获取，打印get user from real，从缓存中获取没有打印信息 
+## 一致性hash
+路径 org/geektimes/projects/user/consistentHash下 
+执行后类似结果：
+
+平均值：100000.00
+最大值：108989,（108.99%）
+最小值：80245,（80.25%）
+极差：28744,（28.74%）
+标准差：5975.80,（5.98%）
+数据迁移量：175627（17.56%）
