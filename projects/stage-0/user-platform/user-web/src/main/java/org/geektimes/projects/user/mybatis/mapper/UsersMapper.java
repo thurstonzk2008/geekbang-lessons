@@ -13,8 +13,8 @@ import java.util.List;
  * @create 2021-05-15 6:10 下午
  * @Version 1.0
  **/
-@Repository
-@Mapper
+//@Repository("UsersMapper")
+//@Mapper
 
     public interface UsersMapper {
 

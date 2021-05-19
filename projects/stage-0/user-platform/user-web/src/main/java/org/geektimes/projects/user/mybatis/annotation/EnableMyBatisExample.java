@@ -25,10 +25,10 @@ import org.springframework.context.annotation.ImportResource;
  * @since TODO
  * Date : 2021-05-06
  */
-@EnableMyBatis(dataSource = "dataSource",
-        configLocation = "classpath*:META-INF/mybatis/mybatis-config.xml",
-        mapperLocations = {"classpath*:mappers/**/*.xml"},
-        environment = "development")
-//@ImportResource(locations = "classpath*:sample/spring-context.xml") // SqlSessionFactoryBean
-public class EnableMyBatisExample {
-}
+//@EnableMyBatis(dataSource = "dataSource",
+//        configLocation = "classpath*:META-INF/mybatis/mybatis-config.xml",
+//        mapperLocations = {"classpath*:mappers/**/*.xml"},
+//        environment = "development")
+////@ImportResource(locations = "classpath*:sample/spring-context.xml") // SqlSessionFactoryBean
+//public class EnableMyBatisExample {
+//}

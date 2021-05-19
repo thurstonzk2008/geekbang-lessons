@@ -5,7 +5,7 @@
 <mapper namespace="org.geektimes.projects.user.mybatis.mapper.UsersMapper">
 
     <select id="getAll" resultType="org.geektimes.projects.user.domain.User">
-        select * from Users;
+        select * from users;
     </select>
 
 </mapper>

@@ -18,11 +18,11 @@ public class MySQLConfiguration {
     @Bean
     public DataSource dataSource() {
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setDatabaseName("test");
+        dataSource.setDatabaseName("mybatis");
         dataSource.setServerName("localhost");
         dataSource.setPort(3306);
-        dataSource.setUser("username");
-        dataSource.setPassword("password");
+        dataSource.setUser("zhk");
+        dataSource.setPassword("Password123");
 
         return dataSource;
     }
