@@ -17,31 +17,31 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 * @since <pre>5月 18, 2021</pre> 
 * @version 1.0 
 */
-@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = RedisCacheManager.class, loader = AnnotationConfigContextLoader.class)
-@ContextConfiguration ({"classpath:META-INF/applicationContext.xml"})
-public class MybatisServiceImplTest {
-
-    @Autowired
-    private MybatisService mybatisService;
-
-//@Before
-//public void before() throws Exception {
+//@RunWith(SpringJUnit4ClassRunner.class)
+////@ContextConfiguration(classes = RedisCacheManager.class, loader = AnnotationConfigContextLoader.class)
+//@ContextConfiguration ({"classpath:META-INF/applicationContext.xml"})
+//public class MybatisServiceImplTest {
+//
+//    @Autowired
+//    private MybatisService mybatisService;
+//
+////@Before
+////public void before() throws Exception {
+////}
+////
+////@After
+////public void after() throws Exception {
+////}
+//
+///**
+//*
+//* Method: printUser()
+//*
+//*/
+//@Test
+//public void testPrintUser() throws Exception {
+//    mybatisService.printUser();
 //}
 //
-//@After
-//public void after() throws Exception {
+//
 //}
-
-/** 
-* 
-* Method: printUser() 
-* 
-*/ 
-@Test
-public void testPrintUser() throws Exception {
-    mybatisService.printUser();
-}
-
-
-} 

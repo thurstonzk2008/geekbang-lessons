@@ -63,6 +63,7 @@
         <jedis.version>3.5.2</jedis.version>
         <mybatis.version>3.5.7</mybatis.version>
         <mybatis-spring.version>2.0.6</mybatis-spring.version>
+        <dubbo.version>2.7.10</dubbo.version>
 
         <!--MySQL connect 依赖-->
         <mysql-connector-java.version>8.0.25</mysql-connector-java.version>
@@ -103,6 +104,28 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${javax.servlet-api.version}</version>
+            </dependency>
+
+            <!-- Apache Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
             </dependency>
 
             <!-- JAX-RS API -->
