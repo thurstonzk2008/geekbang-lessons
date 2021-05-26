@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>my-mybatis</artifactId>
+    <artifactId>mymybatis-spring-boot-starter</artifactId>
     <name>My MyBatis Framework ${revision}</name>
 
     <properties>
