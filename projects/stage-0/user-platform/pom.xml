@@ -23,6 +23,7 @@
         <module>my-oauth2</module>
         <module>my-commons</module>
         <module>my-session</module>
+        <module>my-mybatis</module>
     </modules>
 
     <properties>
