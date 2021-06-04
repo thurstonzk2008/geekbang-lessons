@@ -16,6 +16,7 @@
         <module>spring-cloud-config-server</module>
         <module>eureka-server</module>
         <module>spring-cloud-config-client</module>
+        <module>spring-cloud-config-filebased-server</module>
     </modules>
     <packaging>pom</packaging>
 

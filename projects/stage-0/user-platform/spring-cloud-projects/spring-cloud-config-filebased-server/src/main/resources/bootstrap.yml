@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: 'native,file'
+  config:
+    name: file-config-test
+  application:
+    name: file-config-test-app
+  cloud:
+    config:
+      profile: file
+      server:
+        file:
+          file-path: '${user.dir}/spring-cloud-projects/spring-cloud-config-filebased-server/src/main/resources/META-INF/config/default.properties'
+        bootstrap: true

@@ -1,0 +1,3 @@
+org.springframework.cloud.bootstrap.BootstrapConfiguration=\
+org.geektimes.projects.spring.cloud.config.filebasedconfig.environment.FileRepositoryConfiguration\
+org.geektimes.projects.spring.cloud.config.filebasedconfig.environment.FileEnvironmentRepositoryProperties
