@@ -27,11 +27,11 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- Zookeeper 配置客户端 -->
+        <!-- Zookeeper 配置客户端
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zookeeper-config</artifactId>
-        </dependency>
+        </dependency>  -->
 
         <!-- Consul 配置客户端 -->
         <dependency>
