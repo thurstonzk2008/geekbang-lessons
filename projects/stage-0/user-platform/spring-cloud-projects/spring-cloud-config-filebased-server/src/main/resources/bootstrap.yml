@@ -12,3 +12,10 @@ spring:
         file:
           file-path: '${user.dir}/spring-cloud-projects/spring-cloud-config-filebased-server/src/main/resources/META-INF/config/default.properties'
         bootstrap: true
+
+# 配置 Eureka Client（可参考 EurekaClientConfigBean）
+# 配置 Eureka Client 示例（可参考 EurekaInstanceConfigBean）
+eureka:
+  client:
+    service-url:
+      defaultZone: 'http://127.0.0.1:12345/eureka'

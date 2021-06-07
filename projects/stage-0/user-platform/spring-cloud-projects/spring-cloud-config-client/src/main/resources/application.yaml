@@ -7,14 +7,14 @@ spring:
     name: spring-cloud-config-client
 # 配置 Spring Cloud Config Server
   ## 配置直连模式
-  config:
-    import: 'optional:configserver:http://127.0.0.1:8888'
+#  config:
+#    import: 'optional:configserver:http://127.0.0.1:8888'
   ## 配置服务发现模式
   cloud:
     config:
       discovery:
         enabled: true
-        serviceId: config-server
+        serviceId: file-config-test-app
 
 # 配置 Eureka Client（可参考 EurekaClientConfigBean）
 # 配置 Eureka Client 示例（可参考 EurekaInstanceConfigBean）
@@ -22,6 +22,6 @@ eureka:
   client:
     service-url:
       defaultZone: 'http://127.0.0.1:12345/eureka'
-logging:
-  level:
-    root: debug
+#logging:
+#  level:
+#    root: debug
