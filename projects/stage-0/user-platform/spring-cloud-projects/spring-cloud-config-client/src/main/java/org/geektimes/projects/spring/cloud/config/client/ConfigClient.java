@@ -22,6 +22,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.boot.web.server.WebServer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
 
@@ -32,6 +33,7 @@ import org.springframework.context.event.EventListener;
  * @since 1.0.0
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ConfigClient {
 
     @Value("${my.name}")
