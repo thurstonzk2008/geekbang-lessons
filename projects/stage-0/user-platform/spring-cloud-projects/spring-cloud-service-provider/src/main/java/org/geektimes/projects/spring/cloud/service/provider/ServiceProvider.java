@@ -90,12 +90,12 @@ public class ServiceProvider {
         messageChannel.send(message);
     }
 
-    @Scheduled(fixedRate = 3000)
-    public void sendMessage2() {
-        MessageChannel messageChannel = mySource.output2();
-        GenericMessage<String> message = new GenericMessage("2021");
-        messageChannel.send(message);
-    }
+//    @Scheduled(fixedRate = 3000)
+//    public void sendMessage2() {
+//        MessageChannel messageChannel = mySource.output2();
+//        GenericMessage<String> message = new GenericMessage("2021");
+//        messageChannel.send(message);
+//    }
 
     @CircuitBreaker(name = "echo", fallbackMethod = "fallback")
     @GetMapping("/echo/{message}")

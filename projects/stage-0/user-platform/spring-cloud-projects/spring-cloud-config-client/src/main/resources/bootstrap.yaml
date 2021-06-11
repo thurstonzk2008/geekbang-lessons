@@ -14,7 +14,7 @@ spring:
     config:
       discovery:
         enabled: true
-        serviceId: file-config-test-app
+        serviceId: config-server
 
 # 配置 Eureka Client（可参考 EurekaClientConfigBean）
 # 配置 Eureka Client 示例（可参考 EurekaInstanceConfigBean）
