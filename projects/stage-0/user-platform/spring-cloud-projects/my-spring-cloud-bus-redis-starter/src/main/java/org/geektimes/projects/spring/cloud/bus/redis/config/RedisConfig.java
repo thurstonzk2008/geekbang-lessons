@@ -1,4 +1,4 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.config;
+package org.geektimes.projects.spring.cloud.bus.redis.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

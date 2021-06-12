@@ -1,4 +1,4 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.message;
+package org.geektimes.projects.spring.cloud.bus.redis.message;
 
 public class RedisMessage {
     private String clazz;

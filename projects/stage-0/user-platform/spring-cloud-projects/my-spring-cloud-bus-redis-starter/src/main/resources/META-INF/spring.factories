@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-pers.cocoadel.learning.spring.cloud.bus.redis.config.RedisBusAutoConfig
+org.geektimes.projects.spring.cloud.bus.redis.config.RedisBusAutoConfig

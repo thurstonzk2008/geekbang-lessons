@@ -1,4 +1,4 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.subscriber;
+package org.geektimes.projects.spring.cloud.bus.redis.subscriber;
 
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.RedisSerializer;

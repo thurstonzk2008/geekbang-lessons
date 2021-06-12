@@ -1,12 +1,11 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.publisher;
+package org.geektimes.projects.spring.cloud.bus.redis.publisher;
 
+import org.geektimes.projects.spring.cloud.bus.redis.message.RedisMessage;
 import org.springframework.cloud.bus.BusBridge;
 import org.springframework.cloud.bus.BusProperties;
 import org.springframework.cloud.bus.event.RemoteApplicationEvent;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.messaging.converter.AbstractMessageConverter;
 import org.springframework.stereotype.Component;
-import pers.cocoadel.learning.spring.cloud.bus.redis.message.RedisMessage;
 
 /**
  * 接收本地的 {@link RemoteApplicationEvent}，并且通过 Redis 发送到消息总线

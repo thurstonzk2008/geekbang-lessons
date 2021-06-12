@@ -1,10 +1,10 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.subscriber;
+package org.geektimes.projects.spring.cloud.bus.redis.subscriber;
 
+import org.geektimes.projects.spring.cloud.bus.redis.message.RedisMessage;
 import org.springframework.cloud.bus.BusProperties;
 import org.springframework.cloud.bus.ServiceMatcher;
 import org.springframework.cloud.bus.event.RemoteApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
-import pers.cocoadel.learning.spring.cloud.bus.redis.message.RedisMessage;
 
 /**
  * 从 Redis 接收并且处理 {@link RemoteApplicationEvent}

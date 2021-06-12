@@ -1,4 +1,4 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.subscriber;
+package org.geektimes.projects.spring.cloud.bus.redis.subscriber;
 
 /**
  * redis 订阅信息处理接口

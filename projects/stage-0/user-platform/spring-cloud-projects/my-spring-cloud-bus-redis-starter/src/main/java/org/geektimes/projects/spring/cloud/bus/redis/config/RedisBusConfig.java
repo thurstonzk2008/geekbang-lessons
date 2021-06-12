@@ -1,6 +1,5 @@
-package pers.cocoadel.learning.spring.cloud.bus.redis.config;
+package org.geektimes.projects.spring.cloud.bus.redis.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cloud.bus.BusBridge;
 import org.springframework.cloud.bus.BusProperties;
@@ -15,11 +14,10 @@ import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.messaging.converter.AbstractMessageConverter;
-import pers.cocoadel.learning.spring.cloud.bus.redis.publisher.RedisBusBridge;
-import pers.cocoadel.learning.spring.cloud.bus.redis.subscriber.MessageHandler;
-import pers.cocoadel.learning.spring.cloud.bus.redis.subscriber.MessageListenerAdapters;
-import pers.cocoadel.learning.spring.cloud.bus.redis.subscriber.RemoteApplicationEventMessageHandler;
+import org.geektimes.projects.spring.cloud.bus.redis.publisher.RedisBusBridge;
+import org.geektimes.projects.spring.cloud.bus.redis.subscriber.MessageHandler;
+import org.geektimes.projects.spring.cloud.bus.redis.subscriber.MessageListenerAdapters;
+import org.geektimes.projects.spring.cloud.bus.redis.subscriber.RemoteApplicationEventMessageHandler;
 
 import java.util.List;
 import java.util.Map;
