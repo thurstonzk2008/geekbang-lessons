@@ -9,7 +9,7 @@ graalvm-ce-java11-darwin-amd64-21.1.0.tar.gz
 参考 https://www.graalvm.org/docs/getting-started/macos/
 3. 安装 native-imag
 在GraalVM虚拟机目录/bin目录下，
-/gu install native-image
+./gu install native-image
 注意，可能需要fq
 4. 使用https://start.springboot.io/ 生成spring-native源代码
 5. mvn -Pnative -DskipTests packag
