@@ -320,6 +320,27 @@
         <body-content>empty</body-content>
     </tag>
 
+    <tag>
+        <name>helloWorldTag</name>
+        <tag-class>com.salesmanager.shop.tags.HelloWorldTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>sex</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>age</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
 
 </taglib>
 

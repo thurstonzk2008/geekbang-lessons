@@ -28,10 +28,12 @@
 
 				<!-- include all header js and css -->
                 <jsp:include page="/pages/shop/templates/december/sections/shopLinks.jsp" />
-                
-                
-                
-    <script type="text/html" id="productBoxTemplate">
+		        <sm:helloWorldTag name="test" sex="man" age="18"/>
+
+
+
+
+		 <script type="text/html" id="productBoxTemplate">
 			{{#products}}
                         <div itemscope itemtype="http://schema.org/Enumeration" class="col-md-COLUMN-SIZE col-sm-6 col-xs-12 product" item-order="{{sortOrder}}" item-name="{{description.name}}" item-price="{{price}}" data-id="{{id}}">
 								<div class="thumbnail product-img" style="border:none !important;">

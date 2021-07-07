@@ -1,18 +1,20 @@
 <%
-response.setCharacterEncoding("UTF-8");
-response.setHeader("Cache-Control","no-cache");
-response.setHeader("Pragma","no-cache");
-response.setDateHeader ("Expires", -1);
+//response.setCharacterEncoding("UTF-8");
+//response.setHeader("Cache-Control","no-cache");
+//response.setHeader("Pragma","no-cache");
+//response.setDateHeader ("Expires", -1);
 %>
+<sm:common-response-headers/>
+
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="/WEB-INF/shopizer-tags.tld" prefix="sm" %> 
- 
-<%@page contentType="text/html"%>
-<%@page pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/shopizer-tags.tld" prefix="sm" %>
+
+
+<jsp:directive.page contentType="text/html" pageEncoding="UTF-8" />
 
 <!-- requires functions.jsp -->
 <script src="<c:url value="/resources/js/jquery.maskedinput.min.js" />"></script>
@@ -93,7 +95,7 @@ function isFormValid() {
 					<form:errors path="*" cssClass="alert alert-error alert-danger form-group" element="div" />
 					<fieldset>
 						<div class="control-group form-group">
-							<label class="required control-label" for="FirstNameRegister"><s:message code="label.generic.firstname" text="First Name"/></label>
+							<label class="required control-label" for="FirstNameRegister"><s:message code="label.generic.firstname" text="First Name1123"/></label>
 							<div class="controls">
 							   <s:message code="NotEmpty.customer.firstName" text="First name is required" var="msgFirstName"/>
 							   <form:input path="billing.firstName" cssClass="span8 required input form-control form-control-md" id="firstName" title="${msgFirstName}"/>
