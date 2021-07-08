@@ -16,51 +16,38 @@
  */
 package com.salesmanager.shop.tags;
 
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
+/**
+ * simple tag
+ *
+ * @Author zhk
+ **/
 
 public class HelloWorldTag extends SimpleTagSupport {
     private String name;
+    private String sex;
+    private int  age;
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    private String sex;
-
-    private int age;
 
     @Override
     public void doTag() throws JspException, IOException {
-//        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        HttpServletResponse response = attributes.getResponse();
-//        response.getWriter().write("Hello,World");
         this.getJspContext().getOut().write(
                 "[Person Info]name: " + name + ", sex: " + sex + ", age:" + age);
     }
